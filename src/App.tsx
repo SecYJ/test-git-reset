@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [value, onValueChange] = useReducer((v) => v + 1, 0);
+  const [color, setColor] = useState("red");
 
   return (
     <>
       <h1>Vite + React</h1>
+      <input
+        type="text"
+        value={color}
+        onChange={(e) => setColor(e.target.value)}
+      />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <button onClick={onValueChange}>increment {value}</button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
